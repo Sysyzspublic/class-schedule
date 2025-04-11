@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>邵阳市一中校园课堂课表集控服务</title>
+    <style>
+        /* 定义 Material You 风格的颜色 */
+        :root {
+            --md-sys-color-primary: #6750A4;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-background: #FFFFFF;
+            --md-sys-color-on-background: #1C1B1F;
+            --md-sys-color-surface: #FFFFFF;
+            --md-sys-color-on-surface: #1C1B1F;
+        }
+
+        body {
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .container {
+            min-width: 320px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            word-wrap: break-word;
+        }
+
+        .btn {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-radius: 9999px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #7E57C2;
+        }
+
+        nav {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative; /* 新增，用于定位下拉菜单 */
+        }
+
+        nav a {
+            color: var(--md-sys-color-on-primary);
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        nav a:hover {
+            color: #E0E0E0;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px); /* 与导航栏下方留出10px的距离 */
+            right: 0; /* 与顶栏容器右侧对齐 */
+            background-color: var(--md-sys-color-primary);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* 确保显示在其他元素上方 */
+        }
+
+        .dropdown-menu a {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        /* 新增样式，当链接不可点击时的样式 */
+        a.disabled {
+            color: gray;
+            pointer-events: none;
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+            }
+
+            nav > div {
+                display: none;
+            }
+
+            .menu-toggle.active + .dropdown-menu {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            menuToggle.addEventListener('click', function () {
+                this.classList.toggle('active');
+                dropdownMenu.classList.toggle('active');
+            });
+
+            const troubleshootingLink = document.querySelectorAll('a[href="#"][data-id]');
+            troubleshootingLink.forEach(link => {
+                const id = link.getAttribute('data-id');
+                if (id === 'f') {
+                    link.classList.add('disabled');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <h1 class="text-2xl font-bold">邵阳市第一中学<br>课表集控服务</h1>
+            <div>
+                <a href="login.html" class="hover:text-gray-300">登录系统</a>
+                <a href="#" class="hover:text-gray-300" data-id="f">故障排查</a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="dropdown-menu">
+                <a href="login.html" class="hover:text-gray-300">登录系统</a>
+                <a href="#" class="hover:text-gray-300" data-id="f">故障排查</a>
+            </div>
+        </nav>
+
+        <!-- 服务介绍 -->
+        <div class="card">
+            <h2 class="text-xl font-bold mb-4">服务介绍</h2>
+            <p>提供一种高效、便捷的方式来管理多个设备上的课表显示工具。通过集中控制平台，可以对课表进行统一配置和管理。</p>
+        </div>
+
+        <div class="card">
+            <h2 class="text-xl font-bold mb-4">下载资源</h2>
+            <p>我们使用 ClassIsland 的课表基础服务，如果您需要加入校园集控，请您先下载以下资源：</p>
+            <ol class="list-decimal pl-6">
+                <li><a href="https://classisland.tech/download">【ClassIsland 程序】</a></li>
+            </ol>
+            <p style="color: #D32F2F;">ClassIsland 不支持在 Linux 设备上运行，如果您所在教室仍在使用<strong>统信 UOS </strong>，请先联系学校信息中心。</p>
+        </div>
+
+        <!-- 如何加入 -->
+        <div class="card">
+            <h2 class="text-xl font-bold mb-4">如何加入</h2>
+            <p>加入集控服务请按照以下步骤操作：</p>
+            <ol class="list-decimal pl-6">
+                <li>下载配置文件。</li>
+                <li>将配置文件解压到 ClassIsland 的安装根目录。</li>
+                <li>点击 ClassIsland 窗体右上角菜单选择加入管理。</li>
+            </ol>
+            <a href="./sur/ManagementPreset.zip" class="btn mt-4">下载配置文件</a>
+            <a href="https://docs.classisland.tech/management/connect-to-mgmt-server.html" class="btn mt-4">安装参考文档</a>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="mt-8 text-center text-gray-600">
+            &copy; <span id="year">2025</span> <strong>邵阳市第一中学信息技术社团</strong>
+        </footer>
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear( );
+        </script>
+    </div>
+</body>
+
+</html>
+    
